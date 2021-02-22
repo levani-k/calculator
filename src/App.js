@@ -229,18 +229,23 @@ class App extends React.Component {
   }
 
   dotButton = () => {
-    if(!this.state.operator) {
-      this.setState(prevState => {
-        return {
-          firstNumber: prevState.firstNumber + '.'
-        }
-      })
+    const { firstNumber, secondNumber, operator } = this.state 
+    if(!operator) {
+      if(firstNumber && firstNumber[firstNumber.length - 1] !== '.') {
+        this.setState(prevState => {
+          return {
+            firstNumber: prevState.firstNumber + '.'
+          }
+        })
+      }
     } else {
-      this.setState(prevState => {
-        return {
-          secondNumber: prevState.secondNumber + '.'
-        }
-      })
+      if(secondNumber && secondNumber[secondNumber.length - 1] !== '.') {
+        this.setState(prevState => {
+          return {
+            secondNumber: prevState.secondNumber + '.'
+          }
+        })
+      }
     }
   }
 

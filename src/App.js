@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Children } from 'react'
 import './App.css';
 
 class App extends React.Component {
@@ -208,30 +208,22 @@ class App extends React.Component {
     if(operator === '*') {
       this.setState({ 
         finalCalculation: firstNumber * secondNumber,
-        firstNumber: '',
-        secondNumber: '',
-        operator: ''
+        firstNumber: firstNumber * secondNumber
       })
     } else if(operator === '/') {
       this.setState({ 
         finalCalculation: firstNumber / secondNumber,
-        firstNumber: '',
-        secondNumber: '',
-        operator: ''
+        firstNumber: firstNumber / secondNumber
       })
     } else if(operator === '+') {
       this.setState({ 
         finalCalculation: firstNumber + secondNumber,
-        firstNumber: '',
-        secondNumber: '',
-        operator: ''
+        firstNumber: firstNumber + secondNumber
       })
     } else if(operator === '-') {
       this.setState({ 
         finalCalculation: firstNumber - secondNumber,
-        firstNumber: '',
-        secondNumber: '',
-        operator: ''
+        firstNumber: firstNumber - secondNumber
       })
     }
   }
@@ -275,48 +267,55 @@ class App extends React.Component {
   }
 
   sqrtButton = () => {
-    this.setState({ finalCalculation: Math.sqrt(this.state.firstNumber) })
+    this.setState({ 
+      finalCalculation: Math.sqrt(this.state.firstNumber), 
+      firstNumber: Math.sqrt(this.state.firstNumber)
+    })
   }
 
   squareButton = () => {
-    this.setState({ finalCalculation: Math.pow(this.state.firstNumber, 2) })
+    this.setState({
+       finalCalculation: Math.pow(this.state.firstNumber, 2),
+       firstNumber: Math.pow(this.state.firstNumber, 2) 
+      })
   }
 
 
   render() {
     return (
       <div className='tc'>
-        <div className='displayCalculation'>
+        <div className='displayCalculation tc'>
           {
             this.state.finalCalculation ? <p>{this.state.finalCalculation}</p> : this.state.operator ? <p>{this.state.secondNumber}</p> : <p>{this.state.firstNumber}</p>
           }  
         </div>
         <br />
-        <button onClick={this.clearButton}>Clear</button>
-        <button onClick={this.delbutton}>Del</button>
-        <button onClick={this.sqrtButton}>√</button>
-        <button onClick={this.squareButton}>x²</button>
-        <br />
-        <button onClick={this.takeNumber7}>7</button>
-        <button onClick={this.takeNumber8}>8</button>
-        <button onClick={this.takeNumber9}>9</button>
-        <button onClick={this.divisionOperator}>/</button>
-        <br />
-        <button onClick={this.takeNumber4}>4</button>
-        <button onClick={this.takeNumber5}>5</button>
-        <button onClick={this.takeNumber6}>6</button>
-        <button onClick={this.MultiplicarionOperator}>*</button>
-        <br />
-        <button onClick={this.takeNumber1}>1</button>
-        <button onClick={this.takeNumber2}>2</button>
-        <button onClick={this.takeNumber3}>3</button>
-        <button onClick={this.plusOperator}>+</button>
-        <br />
-        <button onClick={this.dotButton}>.</button>
-        <button onClick={this.takeNumber0}>0</button>
-        <button onClick={this.answer}>=</button>
-        <button onClick={this.minusOperator}>-</button>
-
+        <div>
+          <button onClick={this.clearButton}>Clear</button>
+          <button onClick={this.delbutton}>Del</button>
+          <button onClick={this.sqrtButton}>√</button>
+          <button onClick={this.squareButton}>x²</button>
+          <br />
+          <button onClick={this.takeNumber7}>7</button>
+          <button onClick={this.takeNumber8}>8</button>
+          <button onClick={this.takeNumber9}>9</button>
+          <button onClick={this.divisionOperator}>/</button>
+          <br />
+          <button onClick={this.takeNumber4}>4</button>
+          <button onClick={this.takeNumber5}>5</button>
+          <button onClick={this.takeNumber6}>6</button>
+          <button onClick={this.MultiplicarionOperator}>*</button>
+          <br />
+          <button onClick={this.takeNumber1}>1</button>
+          <button onClick={this.takeNumber2}>2</button>
+          <button onClick={this.takeNumber3}>3</button>
+          <button onClick={this.plusOperator}>+</button>
+          <br />
+          <button onClick={this.dotButton}>.</button>
+          <button onClick={this.takeNumber0}>0</button>
+          <button onClick={this.answer}>=</button>
+          <button onClick={this.minusOperator}>-</button>
+        </div>
       </div>
     );
   }

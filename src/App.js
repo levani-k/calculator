@@ -252,6 +252,36 @@ class App extends React.Component {
     }
   }
 
+  delbutton = () => {
+    const { firstNumber, secondNumber, operator } = this.state
+    if(firstNumber && !secondNumber && !operator) {
+      let newFirstNum = firstNumber.slice(0, firstNumber.length - 1)
+      this.setState({ firstNumber: newFirstNum })
+    } else if(firstNumber && operator && !secondNumber) {
+      this.setState({ operator: '' })
+    } else if(firstNumber && operator && secondNumber) {
+      let newSecondNum = secondNumber.slice(0, secondNumber.length - 1)
+      this.setState({ secondNumber: newSecondNum })
+    }
+  }
+
+  clearButton = () => {
+    this.setState({
+      firstNumber: '',
+      secondNumber: '',
+      operator: '',
+      finalCalculation: ''
+    })
+  }
+
+  sqrtButton = () => {
+    this.setState({ finalCalculation: Math.sqrt(this.state.firstNumber) })
+  }
+
+  squareButton = () => {
+    this.setState({ finalCalculation: Math.pow(this.state.firstNumber, 2) })
+  }
+
 
   render() {
     return (
@@ -261,6 +291,11 @@ class App extends React.Component {
             this.state.finalCalculation ? <p>{this.state.finalCalculation}</p> : this.state.operator ? <p>{this.state.secondNumber}</p> : <p>{this.state.firstNumber}</p>
           }  
         </div>
+        <br />
+        <button onClick={this.clearButton}>Clear</button>
+        <button onClick={this.delbutton}>Del</button>
+        <button onClick={this.sqrtButton}>√</button>
+        <button onClick={this.squareButton}>x²</button>
         <br />
         <button onClick={this.takeNumber7}>7</button>
         <button onClick={this.takeNumber8}>8</button>

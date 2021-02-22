@@ -1,4 +1,4 @@
-import React, { Children } from 'react'
+import React from 'react'
 import './App.css';
 
 class App extends React.Component {
@@ -13,193 +13,27 @@ class App extends React.Component {
   }
 
 
-  takeNumber0 = () => {
+  takeNumber = (event) => {
     this.setState({ finalCalculation: '' })
     if(!this.state.operator) {
       if(this.state.firstNumber !== '0')
       this.setState(prevState => {
         return {
-          firstNumber: prevState.firstNumber + '0'
+          firstNumber: prevState.firstNumber + event.target.value
         }
       })
     } else {
       this.setState(prevState => {
         return {
-          secondNumber: prevState.secondNumber + '0'
+          secondNumber: prevState.secondNumber + event.target.value
         }
       })
     }
   }
 
-  takeNumber1 = () => {
-    this.setState({ finalCalculation: '' })
-    if(!this.state.operator) {
-      this.setState(prevState => {
-        return {
-          firstNumber: prevState.firstNumber + '1'
-        }
-      })
-    } else {
-      this.setState(prevState => {
-        return {
-          secondNumber: prevState.secondNumber + '1'
-        }
-      })
-    }
+  takeOperator = (event) => {
+    this.setState({ operator: event.target.value })
   }
-
-  takeNumber2 = () => {
-    this.setState({ finalCalculation: '' })
-    if(!this.state.operator) {
-      this.setState(prevState => {
-        return {
-          firstNumber: prevState.firstNumber + '2'
-        }
-      })
-    } else {
-      this.setState(prevState => {
-        return {
-          secondNumber: prevState.secondNumber + '2'
-        }
-      })
-    }
-  }
-
-  takeNumber3 = () => {
-    this.setState({ finalCalculation: '' })
-    if(!this.state.operator) {
-      this.setState(prevState => {
-        return {
-          firstNumber: prevState.firstNumber + '3'
-        }
-      })
-    } else {
-      this.setState(prevState => {
-        return {
-          secondNumber: prevState.secondNumber + '3'
-        }
-      })
-    }
-  }
-
-  takeNumber4 = () => {
-    this.setState({ finalCalculation: '' })
-    if(!this.state.operator) {
-      this.setState(prevState => {
-        return {
-          firstNumber: prevState.firstNumber + '4'
-        }
-      })
-    } else {
-      this.setState(prevState => {
-        return {
-          secondNumber: prevState.secondNumber + '4'
-        }
-      })
-    }
-  }
-
-  takeNumber5 = () => {
-    this.setState({ finalCalculation: '' })
-    if(!this.state.operator) {
-      this.setState(prevState => {
-        return {
-          firstNumber: prevState.firstNumber + '5'
-        }
-      })
-    } else {
-      this.setState(prevState => {
-        return {
-          secondNumber: prevState.secondNumber + '5'
-        }
-      })
-    }
-  }
-
-  takeNumber6 = () => {
-    this.setState({ finalCalculation: '' })
-    if(!this.state.operator) {
-      this.setState(prevState => {
-        return {
-          firstNumber: prevState.firstNumber + '6'
-        }
-      })
-    } else {
-      this.setState(prevState => {
-        return {
-          secondNumber: prevState.secondNumber + '6'
-        }
-      })
-    }
-  }
-
-  takeNumber7 = () => {
-    this.setState({ finalCalculation: '' })
-    if(!this.state.operator) {
-      this.setState(prevState => {
-        return {
-          firstNumber: prevState.firstNumber + '7'
-        }
-      })
-    } else {
-      this.setState(prevState => {
-        return {
-          secondNumber: prevState.secondNumber + '7'
-        }
-      })
-    }
-  }
-
-  takeNumber8 = () => {
-    this.setState({ finalCalculation: '' })
-    if(!this.state.operator) {
-      this.setState(prevState => {
-        return {
-          firstNumber: prevState.firstNumber + '8'
-        }
-      })
-    } else {
-      this.setState(prevState => {
-        return {
-          secondNumber: prevState.secondNumber + '8'
-        }
-      })
-    }
-  }
-
-  takeNumber9 = () => {
-    this.setState({ finalCalculation: '' })
-    if(!this.state.operator) {
-      this.setState(prevState => {
-        return {
-          firstNumber: prevState.firstNumber + '9'
-        }
-      })
-    } else {
-      this.setState(prevState => {
-        return {
-          secondNumber: prevState.secondNumber + '9'
-        }
-      }) 
-    }
-  }
-
-  MultiplicarionOperator = () => {
-    this.setState({ operator: '*' })
-  }
-
-  plusOperator = () => {
-    this.setState({ operator: '+' })
-  }
-
-  minusOperator = () => {
-    this.setState({ operator: '-' })
-  }
-
-  divisionOperator = () => {
-    this.setState({ operator: '/' })
-  }
-
 
   answer = () => {
     const { operator } = this.state
@@ -301,30 +135,29 @@ class App extends React.Component {
           <button onClick={this.sqrtButton}>√</button>
           <button onClick={this.squareButton}>x²</button>
           <br />
-          <button onClick={this.takeNumber7}>7</button>
-          <button onClick={this.takeNumber8}>8</button>
-          <button onClick={this.takeNumber9}>9</button>
-          <button onClick={this.divisionOperator}>/</button>
+          <button value={7} onClick={this.takeNumber}>7</button>
+          <button value={8} onClick={this.takeNumber}>8</button>
+          <button value={9} onClick={this.takeNumber}>9</button>
+          <button value={'/'} onClick={this.takeOperator}>/</button>
           <br />
-          <button onClick={this.takeNumber4}>4</button>
-          <button onClick={this.takeNumber5}>5</button>
-          <button onClick={this.takeNumber6}>6</button>
-          <button onClick={this.MultiplicarionOperator}>*</button>
+          <button value={4} onClick={this.takeNumber}>4</button>
+          <button value={5} onClick={this.takeNumber}>5</button>
+          <button value={6} onClick={this.takeNumber}>6</button>
+          <button value={'*'} onClick={this.takeOperator}>*</button>
           <br />
-          <button onClick={this.takeNumber1}>1</button>
-          <button onClick={this.takeNumber2}>2</button>
-          <button onClick={this.takeNumber3}>3</button>
-          <button onClick={this.plusOperator}>+</button>
+          <button value={1} onClick={this.takeNumber}>1</button>
+          <button value={2} onClick={this.takeNumber}>2</button>
+          <button value={3} onClick={this.takeNumber}>3</button>
+          <button value={'+'} onClick={this.takeOperator}>+</button>
           <br />
           <button onClick={this.dotButton}>.</button>
-          <button onClick={this.takeNumber0}>0</button>
+          <button value={0} onClick={this.takeNumber}>0</button>
           <button onClick={this.answer}>=</button>
-          <button onClick={this.minusOperator}>-</button>
+          <button value={'-'} onClick={this.takeOperator}>-</button>
         </div>
       </div>
     );
-  }
-  
+  } 
 }
 
 export default App;

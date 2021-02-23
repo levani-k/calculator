@@ -65,7 +65,7 @@ class App extends React.Component {
   dotButton = () => {
     const { firstNumber, secondNumber, operator } = this.state 
     if(!operator) {
-      if(firstNumber && firstNumber[firstNumber.length - 1] !== '.') {
+      if(firstNumber && !firstNumber.includes('.')) {
         this.setState(prevState => {
           return {
             firstNumber: prevState.firstNumber + '.'
@@ -73,7 +73,7 @@ class App extends React.Component {
         })
       }
     } else {
-      if(secondNumber && secondNumber[secondNumber.length - 1] !== '.') {
+      if(secondNumber && !secondNumber.includes('.')) {
         this.setState(prevState => {
           return {
             secondNumber: prevState.secondNumber + '.'
